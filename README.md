@@ -1,6 +1,34 @@
 # 自动化测试平台
 ATP可以完成接口测试，性能测试，web自动化测试(暂时没有渗透测试内容)，支持corn定时任务
 
+## 依赖环境
++ beego: go get  github.com/astaxie/beego
++ cronexpr: github.com/gorhill/cronexpr
++ errorx: github.com/joomcode/errorx
++ charset: golang.org/x/net/html/charset
+
+### 设置
+conf/app.conf：
+
+```
+appname = ATP # 应用名称
+httpaddr = "127.0.0.1" # 地址
+httpport = 8080 # 端口
+runmode = dev # 使用开发模式
+enablexsrf = true # 开启xsrf防护
+xsrfkey = 61oETzKXQAGaYdkL5gEmGeJJFuYh7EQnp2XdTP1o # xsrf 的key
+xsrfexpire = 3600
+sessionon = true # 开启session
+httpsaddr="127.0.0.1" 
+httpsport=8989
+HTTPSCertFile = "server.crt" # https相关
+HTTPSKeyFile ="server.key"
+EnableGzip = true
+aiHost = 192.168.1.1 # 使用AI的接口地址
+otherhost = 192.168.1.1 # 远程链接时的主机地址
+```
+
+
 ## 平台介绍
 平台采用go语言开发，框架使用beego，selenium客户端使用java编写，AI助手使用python编写（模型需要训练）
 

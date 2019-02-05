@@ -1,0 +1,39 @@
+<div class="wrapper wrapper-content">
+    <div class="row" id="sortable-view">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>测试用例顺序</h5>
+                </div>
+                <div class="ibox-content">
+                    <p class="m-b-lg">
+                        你可以拖动来修改元素执行顺序
+                    </p>
+                    <div class="dd" id="nestable2">
+                        <ol class="dd-list">
+                            <li class="dd-item" data-caseId="{{.Case.Id}}">
+                                <div class="dd-handle">
+                                    <span class="label label-info"><i class="fa fa-users"></i></span>{{.Case.CaseName}}
+                                </div>
+                                <ol class="dd-list" >
+                                    {{range $item := .Case.Action}}
+                                        <li class="dd-item" data-name="{{$item.ElementName}}" data-id="{{$item.Id}}">
+                                            <div class="dd-handle" >
+                                                <span class="pull-right">{{$item.ElementMethod}} </span>
+                                                <span class="label label-info"><i class="fa fa-cog"></i></span>{{$item.ElementName}}
+                                            </div>
+                                        </li>
+                                    {{end}}
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="m-t-md" style="display: none;">
+                        <h5>序列化输出</h5>
+                    </div>
+                    <textarea style="display: none;" id="nestable2-output" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

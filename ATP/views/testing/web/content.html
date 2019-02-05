@@ -1,0 +1,126 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>接口测试</h5>
+
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="{{urlfor "WebTestingController.GetKey"}}">获取链接Key</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="col-lg-12"><input type="text" class="form-control input-sm m-b-xs" id="filter"
+                                                  placeholder="搜索表"></div>
+
+                    <table class="footable table table-stripped table-hover" data-page-size="8" data-filter=#filter>
+                        <thead>
+                        <tr>
+                            <th>编号</th>
+                            <th>用例名称</th>
+                            <th data-hide="phone,tablet">用例描述</th>
+                            <th>函数名称</th>
+                            <th>断言方式</th>
+                            <th data-hide="phone,tablet">状态</th>
+                            <th>执行</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{range $item := .List}}
+                        <tr class="gradeX">
+                            <td>{{$item.Id}}</td>
+                            <td>{{$item.CaseName}}</td>
+                            <td>{{$item.CaseDescribe}}</td>
+                            <td class="center">{{$item.FunctionName}}</td>
+                            <td class="center">{{$item.AssertType}}</td>
+                            <td class="center">
+                            {{if eq $item.Status 1}}
+                                <p style="color: green;">通过</p>
+                            {{else if eq $item.Status 2 }}
+                                <p style="color: red;">失败</p>
+                            {{else}}
+                                <p style="color: grey;">未执行</p>
+                            {{end}}
+                            </td>
+                            <td class="center">
+                                <button id="case{{$item.Id}}" data-style="zoom-in" onclick="run('{{$item.Id}}')"
+                                        class="ladda-button ladda-button-demo btn  btn-primary btn-xs">运行
+                                </button>
+                                <a href="{{urlfor "WebTestingController.Order"}}?caseId={{$item.Id}}"
+                                   class="ladda-button ladda-button-demo btn  btn-info btn-xs">设置执行顺序</a>
+                            </td>
+                        </tr>
+                        {{end}}
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="5">
+                                <ul class="pagination pull-right"></ul>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal inmodal" id="tableModel" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content animated bounceInRight">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span
+                            class="sr-only">关闭</span></button>
+                    <i class="fa fa-laptop modal-icon"></i>
+                    <h4 class="modal-title">添加测试用例</h4>
+                    <small class="font-bold"></small>
+                </div>
+                <div class="modal-body">
+                    <div class="ibox-content">
+                        <form class="form-horizontal" id="CaseForm">
+                            <div class="form-group"><label class="col-lg-2 control-label">名称</label>
+                                <div class="col-lg-10"><input type="text" name="names" placeholder="API名称，例如：百度登录接口"
+                                                              class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group"><label class="col-lg-2 control-label">请求地址</label>
+                                <div class="col-lg-10">
+                                    <input type="text" name="addr" placeholder="URL地址" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group"><label class="col-lg-2 control-label">请求方法</label>
+                                <div class="col-lg-10"><input type="text" name="method" placeholder="请求方式"
+                                                              class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group"><label class="col-lg-2 control-label">请求值</label>
+                                <div class="col-lg-10"><input type="text" name="value" placeholder="请求值"
+                                                              class="form-control">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" id="submit" data-dismiss="modal">保存更改</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+

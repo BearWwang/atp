@@ -1,0 +1,128 @@
+<!-- Mainly scripts -->
+<script src="/static/js/jquery-3.1.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- CodeMirror -->
+<script src="/static/js/plugins/codemirror/codemirror.js"></script>
+{{/*<script src="/static/js/plugins/codemirror/mode/javascript/javascript.js"></script>*/}}
+<script src="/static/js/plugins/codemirror/mode/python/python.js"></script>
+
+
+<!-- Custom and plugin javascript -->
+<script src="/static/js/inspinia.js"></script>
+<script src="/static/js/plugins/pace/pace.min.js"></script>
+
+
+
+<script>
+    $(document).ready(function () {
+
+        var editor_one = CodeMirror.fromTextArea(document.getElementById("code2"), {
+            lineNumbers: true,
+            indentUnit: 2,
+            mode: "python",
+            matchBrackets: true,
+            styleActiveLine: true,
+            theme: "ambiance",
+            extraKeys: {"Ctrl": "autocomplete"}
+        });
+        $(function () {
+            $("#submit").click(function () {
+                toastr.success('提交成功');
+
+                // alert(editor_one.getValue());
+            });
+        });
+    });
+
+
+</script>
+
+<script src="/static/editor/editormd.js"></script>
+<script type="text/javascript">
+    var testEditor;
+
+    function getCodeValue() {
+        return (localStorage.modeName) ? $("#"+localStorage.modeName.replace("text/", "").replace("c/c++", "cpp")+"-code").val() : $("#html-code").val();
+    }
+
+    $(function() {
+        testEditor = editormd("test-editormd", {
+            width            : "90%",
+            height           : 720,
+            watch            : false,
+            toolbar          : false,
+            codeFold         : true,
+            searchReplace    : true,
+            placeholder      : "Enjoy coding!",
+            value            : getCodeValue(),
+            theme            : (localStorage.theme) ? localStorage.theme : "default",
+            mode             : (localStorage.mode) ? localStorage.mode : "text/html",
+            path             : '/static/editor/lib/'
+        });
+
+        $("#get-code-btn").bind("click", function() {
+            toastr.success('提交成功');
+            var a = testEditor.getValue();
+        });
+
+        $("#fullscreen-btn").bind("click", function() {
+            testEditor.fullscreen();
+        });
+
+        var select = $("#themes");
+
+        for (var i = 0, len = editormd.themes.length; i < len; i ++)
+        {
+            var theme    = editormd.themes[i];
+            var selected = (localStorage.theme == theme) ? " selected=\"selected\"" : "";
+            select.append("<option value=\"" + theme + "\"" + selected + ">" + theme + "</option>");
+        }
+
+        select.change(function(){
+            var theme = $(this).val();
+
+            if (theme == "")
+            {
+                alert("theme == \"\"");
+                return false;
+            }
+
+            localStorage.theme = theme;
+            testEditor.setTheme(theme);
+        });
+
+        var modesSelect = $("#modes");
+        var modeNames = ["text/html", "javascript", "php", "text/xml", "text/json", "java", "actionscript", "perl", "go", "python", "c/c++", "css", "ruby"];
+        var modes     = ["text/html", "javascript", "php", "text/xml", "text/json", "clike", "javascript", "perl", "go", "python", "clike", "css", "ruby"];
+
+        for (var i = 0, len = modes.length; i < len; i ++)
+        {
+            var mode    = modes[i];
+            var selected = (localStorage.modeName == modeNames[i]) ? " selected=\"selected\"" : "";
+            modesSelect.append("<option value=\"" + mode + "\"" + selected + " name=\"" + modeNames[i] + "\"" + selected + ">" + modeNames[i] + "</option>");
+        }
+
+        modesSelect.change(function(){
+            var mode = $(this).val();
+            var modeName = $(this).find("option:selected").attr("name");
+
+            if (mode == "")
+            {
+                alert("mode == \"\"");
+                return false;
+            }
+
+            localStorage.mode     = mode;
+            localStorage.modeName = modeName;
+
+            var code = getCodeValue();
+
+            testEditor.setCodeMirrorOption("mode", mode);
+            //testEditor.setCodeMirrorOption("value", code);
+            testEditor.setValue(code);
+        });
+    });
+</script>

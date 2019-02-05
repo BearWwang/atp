@@ -1,0 +1,73 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content animated fadeInUp">
+
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>分配给此帐户的所有项目</h5>
+                        <div class="ibox-tools">
+                            <a href="{{urlfor "WebTestingController.GetKey"}}" class="btn btn-primary btn-xs">获取链接Key</a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="row m-b-sm m-t-sm">
+                            <div class="col-md-1">
+                                <button type="button" id="loading-example-btn" class="btn btn-white btn-sm"><i
+                                        class="fa fa-refresh"></i> 刷新
+                                </button>
+                            </div>
+                            <div class="col-md-11">
+                                <div class="input-group"><input type="text" placeholder="搜索"
+                                                                class="input-sm form-control"> <span
+                                        class="input-group-btn">
+                                        <button type="button" class="btn btn-sm btn-primary"> 搜索</button> </span></div>
+                            </div>
+                        </div>
+
+                        <div class="project-list">
+
+                            <table class="table table-hover">
+                                <tbody>
+                                {{range $item := .List}}
+                                <tr>
+                                    <td class="project-status">
+                                    {{if eq $item.Status  200}}
+                                        <span class="label label-primary">活跃</span>
+                                    {{else if eq $item.Status  500}}
+                                        <span class="label label-warning">停止</span>
+                                    {{else if eq $item.Status  600}}
+                                        <span class="label label-danger">遗弃</span>
+                                    {{else}}
+                                        <span class="label label-default">未启用</span>
+                                    {{end}}
+                                    </td>
+                                    <td class="project-title">
+                                        <a href="/product/detial?id={{$item.Id}}">{{$item.ProjectName}}</a>
+                                        <br>
+                                        <small>创建 {{$item.CreateTime}}</small>
+                                    </td>
+                                    <td class="project-completion">
+                                        <small>完成度: {{$item.Complete}}%</small>
+                                        <div class="progress progress-mini">
+                                            <div style="width: 48%;" class="progress-bar"></div>
+                                        </div>
+                                    </td>
+                                    <td class="project-actions">
+                                        <a href="{{urlfor "WebTestingController.RunTest"}}?productId={{$item.Id}}"
+                                           class="btn btn-white btn-sm"><i
+                                                class="fa fa-folder"></i>
+                                            选择此项目 </a>
+                                    </td>
+                                </tr>
+                                {{end}}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

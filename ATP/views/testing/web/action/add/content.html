@@ -1,0 +1,80 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加元素行为
+                        <small>根据测试用例流程添加元素的行为</small>
+                    </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#">选项 1</a>
+                            </li>
+                            <li><a href="#">选项 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal">
+                        <div class="form-group"><label class="col-sm-2 control-label">选择元素</label>
+
+                            <div class="col-sm-10">
+                                <select class="form-control m-b" name="element">
+                                {{range $item := .List}}
+                                    <option value="{{$item.Id}}">{{$item.ElementName}}</option>
+                                {{end}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label">选择元素行为</label>
+
+                            <div class="col-sm-10">
+                                <select class="form-control m-b" name="action">
+                                    <option value="click">点击</option>
+                                    <option value="sendKeys">输入</option>
+                                    <option value="select">选择</option>
+                                    <option value="swape">拖动</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group"><label class="col-sm-2 control-label">所属测试用例</label>
+                            <div class="col-sm-10">
+                                <select class="form-control m-b" name="case">
+                                {{range $item := .CaseList}}
+                                    <option value="{{$item.Id}}">{{$item.CaseName}}</option>
+                                {{end}}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">复选框 &amp; radios <br/>
+                            <small class="text-navy">自定义元素</small>
+                        </label>
+                            <div class="col-sm-10">
+                                <div class="i-checks"><label> <input type="checkbox" value=""> <i></i> 选项一 </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

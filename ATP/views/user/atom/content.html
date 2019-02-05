@@ -1,0 +1,79 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>添加新角色</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#">选项 1</a>
+                            </li>
+                            <li><a href="#">选项 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form method="get" class="form-horizontal" id="addUser">
+                        <div class="form-group"><label class="col-sm-2 control-label">用户名</label>
+
+                            <div class="col-sm-10"><input type="text" placeholder="请输用户名" name="username" class="form-control"></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10"><input type="password" id="password" placeholder="请输密码" class="form-control" name="password"></div>
+                        </div>
+                        <div class="form-group">
+                            <span class="font-bold pwstrength_viewport_verdict4"></span>
+                            <span class="pwstrength_viewport_progress4"></span>
+                        </div>
+                        <div class="form-group"><label class="col-sm-2 control-label">再次输入</label>
+                            <div class="col-sm-10"><input type="password" placeholder="重新输入密码" class="form-control" name="agpassword"></div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">真实姓名</label>
+                            <div class="col-sm-10"><input type="text" name="realname" placeholder="请输真实姓名" class="form-control"></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-sm-2 control-label">手机号</label>
+
+                            <div class="col-sm-10"><input type="text" name="phone" placeholder="请输入手机号" class="form-control"></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group"><label class="col-lg-2 control-label">邮箱</label>
+                            <div class="col-lg-10"><input type="email" name="email" placeholder="邮箱" class="form-control"></div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="form-group"><label class="col-sm-2 control-label">角色类型</label>
+                            <div class="col-sm-10">
+                                <select class="form-control m-b" name="account">
+                                    <option value="admin">管理员</option>
+                                    <option value="undefine">未注册</option>
+                                    <option value="nomarl">普通用户</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <button class="btn btn-white" type="button">取消</button>
+                                <button class="btn btn-primary" type="button" onclick="Submit()">保存更改</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

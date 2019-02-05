@@ -1,0 +1,419 @@
+<div class="row">
+    <div class="col-lg-9">
+        <div class="wrapper wrapper-content animated fadeInUp">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="m-b-md">
+                                <a href="#" class="btn btn-white btn-xs pull-right">编辑项目</a>
+                                <h2>{{.product.ProjectName}}</h2>
+                            </div>
+                            <dl class="dl-horizontal">
+                                <dt>状态:</dt>
+                                <dd>
+                                {{if eq .product.Status 200}}
+                                    <span class="label label-primary">活跃</span>
+                                {{else if eq .product.Status 500}}
+                                    <span class="label label-warning">停止</span>
+                                {{else if eq .product.Status 600}}
+                                    <span class="label label-danger">遗弃</span>
+                                {{else}}
+                                    <span class="label label-default">未启用</span>
+                                {{end}}
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <dl class="dl-horizontal">
+
+                                <dt>制作:</dt>
+                                <dd>{{.product.Maker}}</dd>
+                                <dt>消息:</dt>
+                                <dd> 162</dd>
+                                <dt>客户:</dt>
+                                <dd><a href="#" class="text-navy"> {{.product.Client}}</a></dd>
+                                <dt>版本:</dt>
+                                <dd> v {{.product.Version}}</dd>
+                            </dl>
+                        </div>
+                        <div class="col-lg-7" id="cluster_info">
+                            <dl class="dl-horizontal">
+
+                                <dt>最近更新时间:</dt>
+                                <dd>{{.product.LastUpdate}}</dd>
+                                <dt>创建项目时间:</dt>
+                                <dd>{{.product.CreateTime}}</dd>
+                                <dt>参与者:</dt>
+                                <dd class="project-people">
+                                    <a href=""><img alt="image" class="img-circle" src="/static/img/a3.jpg"></a>
+                                    <a href=""><img alt="image" class="img-circle" src="/static/img/a1.jpg"></a>
+                                    <a href=""><img alt="image" class="img-circle" src="/static/img/a2.jpg"></a>
+                                    <a href=""><img alt="image" class="img-circle" src="/static/img/a4.jpg"></a>
+                                    <a href=""><img alt="image" class="img-circle" src="/static/img/a5.jpg"></a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <dl class="dl-horizontal">
+                                <dt>完成度:</dt>
+                                <dd>
+                                    <div class="progress progress-striped active m-b-sm">
+                                        <div style="width: {{.product.Complete}}%;" class="progress-bar"></div>
+                                    </div>
+                                    <small>项目完成 <strong>{{.product.Complete}}%</strong> 关闭项目，签订合同和发票。</small>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="row m-t-sm">
+                        <div class="col-lg-12">
+                            <div class="panel blank-panel">
+                                <div class="panel-heading">
+                                    <div class="panel-options">
+                                        <ul class="nav nav-tabs">
+                                            <li class=""><a href="#tab-1" data-toggle="tab"
+                                                            aria-expanded="false">用户信息</a></li>
+                                            <li class="active"><a href="#tab-2" data-toggle="tab" aria-expanded="true">最后活动</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <div class="tab-content">
+                                        <div class="tab-pane" id="tab-1">
+                                            <div class="feed-activity-list">
+                                                <div class="feed-element">
+                                                    <a href="#" class="pull-left">
+                                                        <img alt="image" class="img-circle" src="/static/img/a2.jpg">
+                                                    </a>
+                                                    <div class="media-body ">
+                                                        <small class="pull-right">2小时</small>
+                                                        <strong>小明</strong> 发布消息 <strong>小红</strong> <br>
+                                                        <small class="text-muted">今天下午2:10</small>
+                                                        <div class="well">
+                                                            时间从何而来？为什么时间似乎是流动的？
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="feed-element">
+                                                    <a href="#" class="pull-left">
+                                                        <img alt="image" class="img-circle" src="/static/img/a3.jpg">
+                                                    </a>
+                                                    <div class="media-body ">
+                                                        <small class="pull-right">2小时</small>
+                                                        <strong>小明</strong> 添加1张照片 <strong>我的相册</strong> <br>
+                                                        <small class="text-muted">2天前在上午8:30</small>
+                                                    </div>
+                                                </div>
+                                                <div class="feed-element">
+                                                    <a href="#" class="pull-left">
+                                                        <img alt="image" class="img-circle" src="/static/img/a4.jpg">
+                                                    </a>
+                                                    <div class="media-body ">
+                                                        <small class="pull-right text-navy">5小时</small>
+                                                        <strong>小明</strong> 发布了文章 <strong>我的世界有多大</strong> <br>
+                                                        <small class="text-muted">昨天1:21</small>
+                                                        <div class="actions">
+                                                            <a class="btn btn-xs btn-white"><i
+                                                                    class="fa fa-thumbs-up"></i> 赞 </a>
+                                                            <a class="btn btn-xs btn-white"><i class="fa fa-heart"></i>
+                                                                喜欢</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="feed-element">
+                                                    <a href="#" class="pull-left">
+                                                        <img alt="image" class="img-circle" src="/static/img/a5.jpg">
+                                                    </a>
+                                                    <div class="media-body ">
+                                                        <small class="pull-right">2小时</small>
+                                                        <strong>小明</strong> 发布消息 <strong>小红</strong> <br>
+                                                        <small class="text-muted">昨天下午5:20</small>
+                                                        <div class="well">
+                                                            时间从何而来？为什么时间似乎是流动的？
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="feed-element">
+                                                    <a href="#" class="pull-left">
+                                                        <img alt="image" class="img-circle"
+                                                             src="/static/img/profile.jpg">
+                                                    </a>
+                                                    <div class="media-body ">
+                                                        <small class="pull-right">23小时</small>
+                                                        <strong>小明</strong> 发布了文章 <strong>我的世界有多大</strong> <br>
+                                                        <small class="text-muted">2天前在7:58</small>
+                                                    </div>
+                                                </div>
+                                                <div class="feed-element">
+                                                    <a href="#" class="pull-left">
+                                                        <img alt="image" class="img-circle" src="/static/img/a7.jpg">
+                                                    </a>
+                                                    <div class="media-body ">
+                                                        <small class="pull-right">46小时</small>
+                                                        <strong>小明</strong> 添加1张照片 <strong>我的相册</strong> <br>
+                                                        <small class="text-muted">3天前在7:58</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="tab-pane active" id="tab-2">
+
+                                            <table class="table table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>状态</th>
+                                                    <th>标题</th>
+                                                    <th>开始时间</th>
+                                                    <th>结束时间</th>
+                                                    <th>备注</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <span class="label label-primary"><i class="fa fa-check"></i> 已完成</span>
+                                                    </td>
+                                                    <td>
+                                                        时间从何而来？为什么时间似乎是流动的？
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:10:1
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:16:36
+                                                    </td>
+                                                    <td>
+                                                        <p class="small">
+                                                            在我们看来，宇宙万物皆是永恒变化的，所以我们产生了时间的概念。
+                                                        </p>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="label label-primary"><i class="fa fa-check"></i> 已完成</span>
+                                                    </td>
+                                                    <td>
+                                                        时间从何而来？为什么时间似乎是流动的？
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:10:1
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:16:36
+                                                    </td>
+                                                    <td>
+                                                        <p class="small">
+                                                            在我们看来，宇宙万物皆是永恒变化的，所以我们产生了时间的概念。
+                                                        </p>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="label label-primary"><i class="fa fa-check"></i> 已完成</span>
+                                                    </td>
+                                                    <td>
+                                                        时间从何而来？为什么时间似乎是流动的？
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:10:1
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:16:36
+                                                    </td>
+                                                    <td>
+                                                        <p class="small">
+                                                            在我们看来，宇宙万物皆是永恒变化的，所以我们产生了时间的概念。
+                                                        </p>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="label label-primary"><i class="fa fa-check"></i> 已完成</span>
+                                                    </td>
+                                                    <td>
+                                                        时间从何而来？为什么时间似乎是流动的？
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:10:1
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:16:36
+                                                    </td>
+                                                    <td>
+                                                        <p class="small">
+                                                            在我们看来，宇宙万物皆是永恒变化的，所以我们产生了时间的概念。
+                                                        </p>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="label label-primary"><i class="fa fa-check"></i> 已完成</span>
+                                                    </td>
+                                                    <td>
+                                                        时间从何而来？为什么时间似乎是流动的？
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:10:1
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:16:36
+                                                    </td>
+                                                    <td>
+                                                        <p class="small">
+                                                            在我们看来，宇宙万物皆是永恒变化的，所以我们产生了时间的概念。
+                                                        </p>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="label label-primary"><i class="fa fa-check"></i> 已完成</span>
+                                                    </td>
+                                                    <td>
+                                                        时间从何而来？为什么时间似乎是流动的？
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:10:1
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:16:36
+                                                    </td>
+                                                    <td>
+                                                        <p class="small">
+                                                            在我们看来，宇宙万物皆是永恒变化的，所以我们产生了时间的概念。
+                                                        </p>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="label label-primary"><i class="fa fa-check"></i> 已完成</span>
+                                                    </td>
+                                                    <td>
+                                                        时间从何而来？为什么时间似乎是流动的？
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:10:1
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:16:36
+                                                    </td>
+                                                    <td>
+                                                        <p class="small">
+                                                            在我们看来，宇宙万物皆是永恒变化的，所以我们产生了时间的概念。
+                                                        </p>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="label label-primary"><i class="fa fa-check"></i> 已完成</span>
+                                                    </td>
+                                                    <td>
+                                                        时间从何而来？为什么时间似乎是流动的？
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:10:1
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:16:36
+                                                    </td>
+                                                    <td>
+                                                        <p class="small">
+                                                            在我们看来，宇宙万物皆是永恒变化的，所以我们产生了时间的概念。
+                                                        </p>
+                                                    </td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <span class="label label-primary"><i class="fa fa-check"></i> 已完成</span>
+                                                    </td>
+                                                    <td>
+                                                        时间从何而来？为什么时间似乎是流动的？
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:10:1
+                                                    </td>
+                                                    <td>
+                                                        2017.12.12 10:16:36
+                                                    </td>
+                                                    <td>
+                                                        <p class="small">
+                                                            在我们看来，宇宙万物皆是永恒变化的，所以我们产生了时间的概念。
+                                                        </p>
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="wrapper wrapper-content project-manager">
+            <h4>项目介绍</h4>
+            <img src="/static/img/zender_logo.png" class="img-responsive">
+            <p class="small">
+                项目介绍还没有填写
+            </p>
+            <p class="small font-bold">
+
+            {{if eq .product.ProjectLevel 2}}
+                <span><i class="fa fa-circle text-warning"></i> 高度优先</span>
+            {{else if eq .product.ProjectLevel 1}}
+                <span><i class="fa fa-circle text-warning"></i> 中度优先</span>
+            {{else if eq .project.ProjectLevel 0}}
+                <span><i class="fa fa-circle text-warning"></i> 低度优先</span>
+            {{end}}
+
+
+
+            </p>
+            <h5>项目标签</h5>
+            <ul class="tag-list" style="padding: 0">
+                <li><a href=""><i class="fa fa-tag"></i> 标签</a></li>
+                <li><a href=""><i class="fa fa-tag"></i> 标签</a></li>
+                <li><a href=""><i class="fa fa-tag"></i> 标签</a></li>
+                <li><a href=""><i class="fa fa-tag"></i> 标签</a></li>
+            </ul>
+            <br><br>
+            <div class="small">
+                <h5>项目文件</h5>
+                <ul class="list-unstyled project-files">
+                    <li><a href=""><i class="fa fa-file"></i> Project_document.docx</a></li>
+                    <li><a href=""><i class="fa fa-file-picture-o"></i> Logo_zender_company.jpg</a></li>
+                    <li><a href=""><i class="fa fa-stack-exchange"></i> Email_from_Alex.mln</a></li>
+                    <li><a href=""><i class="fa fa-file"></i> Contract_20_11_2014.docx</a></li>
+                </ul>
+            </div>
+            <div class="text-center m-t-md">
+                <a href="#" class="btn btn-xs btn-primary">添加文件</a>
+                <a href="#" class="btn btn-xs btn-primary">报告联系人</a>
+
+            </div>
+        </div>
+    </div>
+</div>

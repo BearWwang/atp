@@ -1,0 +1,99 @@
+
+<script src="/static/js/jquery-3.1.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- FooTable -->
+<script src="/static/js/plugins/footable/footable.all.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="/static/js/inspinia.js"></script>
+<script src="/static/js/plugins/pace/pace.min.js"></script>
+<script src="/static/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="/static/js/ch.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $('.footable').footable();
+        $('.footable2').footable();
+        $("#CaseForm").validate({
+            rules: {
+                addr: {
+                    required: true,
+                    url: true,
+                    remote:true
+                }
+            }
+        });
+
+    });
+
+    $(function () {
+        var $toast;
+        var xsrftoken = $('meta[name=_xsrf]').attr('content');
+
+        $("#submit").click(function () {
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/testing/web/run",
+                //url
+                data: $('#CaseForm').serialize(),
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("X-Xsrftoken", xsrftoken);
+                },
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result["status"] === 1) {
+                        $toast = toastr["success"]("提交成功", result["message"]);
+                        window.location.reload();
+                    }else if (result["status"] === 2){
+                        $toast = toastr["error"](result["message"]);
+                    }
+                },
+                error: function () {
+                    $toast = toastr["error"]("错误", "发送失败");
+                }
+            });
+        });
+    });
+
+
+    function run(obj) {
+        var $toast;
+        var xsrftoken = $('meta[name=_xsrf]').attr('content');
+        var caseid = obj.id.toString().replace("case","");
+        console.log(caseid);
+        test(caseid);
+        function test(id) {
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/testing/web/run",
+                //url
+                data: "id="+id,
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("X-Xsrftoken", xsrftoken);
+                },
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用z)
+                    if (result["status"] === 1) {
+                        toastr["error"]("提交成功", result["message"]);
+                        window.location.reload();
+                    }else if (result["status"] === 0){
+                        toastr.error(result["message"]);
+                    }
+                },
+                error: function () {
+                    $toast = toastr["error"]("错误", "发送失败");
+                }
+            });
+        }
+    }
+
+</script>

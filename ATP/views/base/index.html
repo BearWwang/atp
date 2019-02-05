@@ -1,0 +1,1162 @@
+<!--
+*
+*  INSPINIA - Responsive Admin Theme
+*  version 2.7
+*
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Access-Control-Allow-Origin" content="http://120.0.0.1:5000">
+    <link href="/static/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <meta name="_xsrf" content="{{.xsrf_token}}"/>
+
+    <title>自动化测试平台 | 主页</title>
+
+{{.CSS}}
+</head>
+
+<body>
+
+<div id="wrapper">
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav metismenu" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" width="60px" height="60pxs"
+                                 src="/static/img/profile_small.png"/>
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong
+                                    class="font-bold">{{.user}}</strong>
+                             </span> <span class="text-muted text-xs block">
+                                {{.IsAdministrator}}
+                                    <b class="caret"></b></span> </span>
+                        </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="profile.html">个人信息</a></li>
+                            <li><a href="contacts.html">好友</a></li>
+                            <li><a href="/mail/list">邮箱</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/user/login">登出</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        VS
+                    </div>
+                </li>
+                <!--<li class="active">-->
+                <li class="">
+                    <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">开始测试</span> <span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li class=""><a href="/testing/interface">接口测试</a></li>
+                        <li><a href="dashboard_2.html">性能测试</a></li>
+                        <li>
+                            <a href="#" id="damian">Web测试 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{{urlfor "WebTestingController.ElementContainer"}}">元素仓库</a>
+                                </li>
+                                <li>
+                                    <a href="{{urlfor "WebTestingController.CaseList"}}">测试用例</a>
+                                </li>
+                                <li>
+                                    <a href="{{urlfor "WebTestingController.GetActionList"}}">元素行为</a>
+                                </li>
+                                <li>
+                                    <a href="{{urlfor "WebTestingController.Chosen"}}">开始测试</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#" id="damian">渗透测试 <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li>
+                                    <a href="{{urlfor "WebTestingController.ElementContainer"}}">信息搜集</a>
+                                </li>
+                                <li>
+                                    <a href="#">漏洞分析</a>
+                                </li>
+                                <li>
+                                    <a href="#">渗透攻击</a>
+                                </li>
+                                <li>
+                                    <a href="{{urlfor "PermeationController.Env"}}">渗透环境</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="layouts.html"><i class="fa fa-microchip"></i> <span class="nav-label">容器云</span></a>
+                </li>
+                <li>
+                    <a href="{{urlfor "JobsController.Jobs"}}"><i class="fa fa-firefox"></i> <span class="nav-label">定时任务</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-codepen"></i> <span class="nav-label">工具</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="/tools/markdown">Markdown编辑器</a></li>
+                        <li><a href="/tools/coding">代码编辑器</a></li>
+                        <li><a href="/tools/file">文件管理</a></li>
+                        <li><a href="/tools/pdf">PDF查看器</a></li>
+                        <li><a href="/tools/calendar">日历</a></li>
+                    </ul>
+                </li>
+            {{if .display}}
+                {{str2html .Html}}
+            {{end}}
+
+                <li>
+                    <a href="mailbox.html"><i class="fa fa-flash"></i> <span class="nav-label">任务调度 </span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="mailbox.html">基本设置</a></li>
+                        <li><a href="mail_detail.html">禁用命令</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-cube"></i> <span class="nav-label">文档管理</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="contacts.html">需求说明</a></li>
+                        <li><a href="/product">项目管理</a></li>
+                        <li><a href="profile_2.html">接口文档管理</a></li>
+                        <li><a href="contacts_2.html">使用说明</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-deaf"></i> <span class="nav-label">测试报告</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="">接口测试报告</a></li>
+                        <li><a href="/product">Web测试报告</a></li>
+                        <li><a href="profile_2.html">性能测试报告</a></li>
+                        <li><a href="contacts_2.html">渗透测试报告</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-book"></i> <span class="nav-label">测试日志</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="{{urlfor "LogController.Log"}}">接口测试日志</a></li>
+                        <li><a href="/product">Web测试日志</a></li>
+                        <li><a href="profile_2.html">性能测试日志</a></li>
+                        <li><a href="contacts_2.html">渗透测试日志</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">持续集成</span><span
+                            class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="search_results.html">Jenkins</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+    <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+            <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                <div class="navbar-header">
+                    <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i>
+                    </a>
+                    <form role="search" class="navbar-form-custom" action="search_results.html">
+                    {{ .xsrfdata }}
+                        <div class="form-group">
+                            <input type="text" placeholder="请输入搜索内容" class="form-control" name="top-search"
+                                   id="top-search">
+                        </div>
+                    </form>
+                </div>
+                <ul class="nav navbar-top-links navbar-right">
+                    <li>
+                        <span class="m-r-sm text-muted welcome-message"><a href="/home">欢迎来到自动化测试平台</a></span>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-envelope"></i> <span class="label label-warning">16</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-messages">
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" src="/static/img/a7.jpg">
+                                    </a>
+                                    <div class="media-body">
+                                        <small class="pull-right">46小时前</small>
+                                        <strong>小明</strong> 评论了 <strong>小红</strong>. <br>
+                                        <small class="text-muted">2017.10.06 7:58</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" src="/static/img/a4.jpg">
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right text-navy">5小时前</small>
+                                        <strong>小红</strong> 打电话给了 <strong>小黑</strong>. <br>
+                                        <small class="text-muted">2017.10.06 7:58</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="dropdown-messages-box">
+                                    <a href="profile.html" class="pull-left">
+                                        <img alt="image" class="img-circle" src="/static/img/profile.jpg">
+                                    </a>
+                                    <div class="media-body ">
+                                        <small class="pull-right">23小时前</small>
+                                        <strong>小黑</strong> 点赞了 <strong>小红</strong>. <br>
+                                        <small class="text-muted">2017.10.06 7:58</small>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="text-center link-block">
+                                    <a href="mailbox.html">
+                                        <i class="fa fa-envelope"></i> <strong>阅读所有消息</strong>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                            <i class="fa fa-bell"></i> <span class="label label-primary">8</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-alerts">
+                            <li>
+                                <a href="mailbox.html">
+                                    <div>
+                                        <i class="fa fa-envelope fa-fw"></i> 你有16条消息
+                                        <span class="pull-right text-muted small">4 分钟前</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="profile.html">
+                                    <div>
+                                        <i class="fa fa-twitter fa-fw"></i> 3 个新的关注者
+                                        <span class="pull-right text-muted small">12 分钟前</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="grid_options.html">
+                                    <div>
+                                        <i class="fa fa-upload fa-fw"></i> 重启服务器
+                                        <span class="pull-right text-muted small">4 分钟前</span>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div class="text-center link-block">
+                                    <a href="notifications.html">
+                                        <strong>查看所有信息</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a href="/user/logout">
+                            <i class="fa fa-sign-out"></i> 注销
+                        </a>
+                    </li>
+                    <li>
+                        <a class="right-sidebar-toggle">
+                            <i class="fa fa-tasks"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </nav>
+        </div>
+
+    {{.Header}}
+        <div class="row">
+
+            <div class="col-lg-12">
+            {{.Content}}
+                <div class="footer">
+                    <div class="pull-right">
+                        <strong>VenmoSnake</strong>
+                    </div>
+                    <div>
+                        <strong>Copyright</strong> 自动化测试平台 &copy; 2017-2018
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="small-chat-box fadeInRight animated">
+
+        <div class="heading" draggable="true">
+            <small class="chat-date pull-right">
+            </small>
+            与 小娜 聊天中
+        </div>
+
+        <div class="content" id="chat">
+
+        </div>
+        <div class="form-chat">
+            <div class="input-group input-group-sm">
+                <div class="div-textarea"></div>
+                <input type="text" class="form-control" id="SendContent">
+                <span class="input-group-btn"> <button
+                        class="btn btn-primary" type="button" id="sendMessage" onclick="send()">发送
+                </button> </span></div>
+        </div>
+
+    </div>
+    <div id="small-chat">
+
+        <span class="badge badge-warning pull-right"></span>
+        <a class="open-small-chat">
+            <i class="fa fa-comments"></i>
+
+        </a>
+    </div>
+    <div id="right-sidebar" class="animated">
+        <div class="sidebar-container">
+
+            <ul class="nav nav-tabs navs-3">
+
+                <li class="active"><a data-toggle="tab" href="#tab-1">
+                    记录
+                </a></li>
+                <li><a data-toggle="tab" href="#tab-2">
+                    项目
+                </a></li>
+                <li class=""><a data-toggle="tab" href="#tab-3">
+                    <i class="fa fa-gear"></i>
+                </a></li>
+            </ul>
+
+            <div class="tab-content">
+
+
+                <div id="tab-1" class="tab-pane active">
+
+                    <div class="sidebar-title">
+                        <h3><i class="fa fa-comments-o"></i> 最新记录</h3>
+                        <small><i class="fa fa-tim"></i> 你有10条新消息。</small>
+                    </div>
+
+                    <div>
+
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" src="/static/img/a1.jpg">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    人生就像钟表，可以回到起点，却已不是昨天！
+                                    <br>
+                                    <small class="text-muted">今天 4:21</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" src="/static/img/a2.jpg">
+                                </div>
+                                <div class="media-body">
+                                    人生就像一本书，出生是封面，归去是封底，内容要靠自己填。
+                                    <br>
+                                    <small class="text-muted">昨天 2:45</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" src="/static/img/a3.jpg">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    人生就像是一盘沙子，你永远也无法全盘抓起，但也不会一无所获。
+                                    <br>
+                                    <small class="text-muted">昨天 1:10</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" src="/static/img/a4.jpg">
+                                </div>
+
+                                <div class="media-body">
+                                    人生就像候车月台，有人上车，也有人下车，来来往往，你谁也抓不住！
+                                    <br>
+                                    <small class="text-muted">星期一 8:37</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" src="/static/img/a8.jpg">
+                                </div>
+                                <div class="media-body">
+                                    人生就像卫生纸，没事的时候尽量少扯！
+                                    <br>
+                                    <small class="text-muted">今天 4:21</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" src="/static/img/a7.jpg">
+                                </div>
+                                <div class="media-body">
+                                    人生就像一只钟摆，永远在渴望的痛苦和满足的厌倦之间摆动！
+                                    <br>
+                                    <small class="text-muted">昨天 2:45</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" src="/static/img/a3.jpg">
+
+                                    <div class="m-t-xs">
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                        <i class="fa fa-star text-warning"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    人生就像是一片海洋，里面的许多的奥秘要让我们去探究。
+                                    <br>
+                                    <small class="text-muted">昨天 1:10</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="sidebar-message">
+                            <a href="#">
+                                <div class="pull-left text-center">
+                                    <img alt="image" class="img-circle message-avatar" src="/static/img/a4.jpg">
+                                </div>
+                                <div class="media-body">
+                                    人生就像一个空荡荡的巨大的坑，我们把时间丢进去，丢完了就完了！
+                                    <br>
+                                    <small class="text-muted">星期一 8:37</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="tab-2" class="tab-pane">
+
+                    <div class="sidebar-title">
+                        <h3><i class="fa fa-cube"></i> 最新项目</h3>
+                        <small><i class="fa fa-tim"></i> 你有14个项目。 10没有完成</small>
+                    </div>
+
+                    <ul class="sidebar-list">
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时前</div>
+                                <h4>新时尚</h4>
+                                人生如一杯茶，不会苦一辈子，但要苦一阵子。
+                                <div class="small">完成度: 22%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+                                </div>
+                                <div class="small text-muted m-t-xs">时间: 2017.12.12 4:00</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时前</div>
+                                <h4>新游戏 </h4>
+                                人生如一杯茶，不会苦一辈子，但要苦一阵子。
+                                <div class="small">完成度: 48%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 48%;" class="progress-bar"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时前</div>
+                                <h4>新房产</h4>
+                                人生如一杯茶，不会苦一辈子，但要苦一阵子。
+                                <div class="small">完成度: 14%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 14%;" class="progress-bar progress-bar-info"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-primary pull-right">NEW</span>
+                                <h4>新世界</h4>
+                                人生如一杯茶，不会苦一辈子，但要苦一阵子。
+                                <div class="small">完成度: 22%</div>
+                                <div class="small text-muted m-t-xs">时间: 2017.12.12 4:00</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时前</div>
+                                <h4>新密码</h4>
+                                人生如一杯茶，不会苦一辈子，但要苦一阵子。
+                                <div class="small">完成度: 22%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 22%;" class="progress-bar progress-bar-warning"></div>
+                                </div>
+                                <div class="small text-muted m-t-xs">时间: 2017.12.12 4:00</div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时前</div>
+                                <h4>新数据 </h4>
+                                人生如一杯茶，不会苦一辈子，但要苦一阵子。
+                                <div class="small">完成度: 48%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 48%;" class="progress-bar"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div class="small pull-right m-t-xs">9小时前</div>
+                                <h4>新会议</h4>
+                                人生如一杯茶，不会苦一辈子，但要苦一阵子。
+                                <div class="small">完成度: 14%</div>
+                                <div class="progress progress-mini">
+                                    <div style="width: 14%;" class="progress-bar progress-bar-info"></div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="label label-primary pull-right">NEW</span>
+                                <h4>新业务</h4>
+                                <!--<div class="small pull-right m-t-xs">9小时前</div>-->
+                                人生如一杯茶，不会苦一辈子，但要苦一阵子。
+                                <div class="small">完成度: 22%</div>
+                                <div class="small text-muted m-t-xs">时间: 2017.12.12 4:00</div>
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                <div id="tab-3" class="tab-pane">
+
+                    <div class="sidebar-title">
+                        <h3><i class="fa fa-gears"></i> 设置</h3>
+                        <small><i class="fa fa-tim"></i> 你有13个项目，10个没有完成</small>
+                    </div>
+
+                    <div class="setings-item">
+                    <span>
+                        显示通知
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
+                                <label class="onoffswitch-label" for="example">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        即时聊天
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" checked class="onoffswitch-checkbox"
+                                       id="example2">
+                                <label class="onoffswitch-label" for="example2">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        历史记录
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example3">
+                                <label class="onoffswitch-label" for="example3">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        显示图表
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example4">
+                                <label class="onoffswitch-label" for="example4">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        离线用户
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" checked name="collapsemenu" class="onoffswitch-checkbox"
+                                       id="example5">
+                                <label class="onoffswitch-label" for="example5">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        网站搜索
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" checked name="collapsemenu" class="onoffswitch-checkbox"
+                                       id="example6">
+                                <label class="onoffswitch-label" for="example6">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setings-item">
+                    <span>
+                        每天更新
+                    </span>
+                        <div class="switch">
+                            <div class="onoffswitch">
+                                <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example7">
+                                <label class="onoffswitch-label" for="example7">
+                                    <span class="onoffswitch-inner"></span>
+                                    <span class="onoffswitch-switch"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-content">
+                        <h4>设置</h4>
+                        <div class="small">
+                            设置描述设置描述设置描述设置描述设置描述设置描述设置描述设置描述设置描述设置描述设置描述设置描述设置描述
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+
+{{.Script}}
+<script>
+    document.onkeydown = function(e){
+        if((e||event).keyCode===13)
+            send();
+    };
+
+    function send() {
+        var textContent = $("#SendContent").val().replace(/[\n\r]/g, '<br>');
+        var myDate = new Date();
+        if (textContent !== "") {
+            $.ajax({
+                //几个参数需要注意一下
+                type: "GET",//方法类型
+                dataType: "text",//预期服务器返回的数据类型
+                url: "http://{{.AiHost}}/api/chatbot?infos=" + textContent + "&callback=?",
+                processData: false,
+                success: function (result) {
+                    var res = $.parseJSON(result);
+                    $("#chat").append("<div class=\"left\">" +
+                            "<div class=\"author-name\">" +
+                            "小娜\n" +
+                            "<small class=\"chat-date\">\n" +
+                            myDate.toLocaleTimeString() +
+                            "</small>" +
+                            "</div>" +
+                            "<div class=\"chat-message active\">\n" +
+                            res["text"] +
+                            "</div>" +
+                            "</div>");
+                    $(document).ready(function () {
+                        $("#chat").scrollTop($("#chat")[0].scrollHeight);
+                    });
+                },
+                error: function (result) {
+                    toastr.error(result);
+                }
+            });
+
+            $("#chat").append("<div class=\"right\">" +
+                    "<div class=\"author-name\">" +
+                    "{{.user}} " +
+                    "\n<small class=\"chat-date\">\n" +
+                    myDate.toLocaleTimeString() +
+                    "</small>" +
+                    "</div>" +
+                    "<div class=\"chat-message\">\n" +
+                    textContent +
+                    "</div>" +
+                    "</div>");
+            //发送后清空输入框
+            document.getElementById("SendContent").value = "";
+            //聊天框默认最底部
+            $(document).ready(function () {
+                $("#chat").scrollTop($("#chat")[0].scrollHeight);
+            });
+        }
+
+    }
+
+    function f(data) {
+        data = data.split("\\u");
+        var str = '';
+        for (var i = 0; i < data.length; i++) {
+            str += String.fromCharCode(parseInt(data[i], 16).toString(10));
+        }
+        return str;
+    }
+
+</script>
+
+{{/*<script>*/}}
+{{/*$(document).ready(function () {*/}}
+{{/*<!-- Enable portlets -->*/}}
+{{/*WinMove();*/}}
+{{/*});*/}}
+{{/*</script>*/}}
+
+
+<!--同步官网模板开始-->
+<div class="theme-config">
+    <div class="theme-config-box">
+        <div class="spin-icon">
+            <i class="fa fa-cogs fa-spin"></i>
+        </div>
+        <div class="skin-settings">
+            <div class="setings-item">
+                    <span>
+                        折叠菜单
+                    </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="collapsemenu">
+                        <label class="onoffswitch-label" for="collapsemenu">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="setings-item">
+                    <span>
+                        固定侧边栏
+                    </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="fixedsidebar" class="onoffswitch-checkbox" id="fixedsidebar">
+                        <label class="onoffswitch-label" for="fixedsidebar">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="setings-item">
+                    <span>
+                        顶级导航栏
+                    </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="fixednavbar" class="onoffswitch-checkbox" id="fixednavbar">
+                        <label class="onoffswitch-label" for="fixednavbar">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="setings-item">
+                    <span>
+                        顶部导航栏V.2
+                        <br>
+                        <small>*主要布局</small>
+                    </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="fixednavbar2" class="onoffswitch-checkbox" id="fixednavbar2">
+                        <label class="onoffswitch-label" for="fixednavbar2">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="setings-item">
+                    <span>
+                        盒子布局
+                    </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="boxedlayout" class="onoffswitch-checkbox" id="boxedlayout">
+                        <label class="onoffswitch-label" for="boxedlayout">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="setings-item">
+                    <span>
+                        固定页脚
+                    </span>
+
+                <div class="switch">
+                    <div class="onoffswitch">
+                        <input type="checkbox" name="fixedfooter" class="onoffswitch-checkbox" id="fixedfooter">
+                        <label class="onoffswitch-label" for="fixedfooter">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="title">换肤</div>
+            <div class="setings-item default-skin">
+                    <span class="skin-name ">
+                         <a href="#" class="s-skin-0">
+                            默认
+                         </a>
+                    </span>
+            </div>
+            <div class="setings-item blue-skin">
+                    <span class="skin-name ">
+                        <a href="#" class="s-skin-1">
+                            蓝色
+                        </a>
+                    </span>
+            </div>
+            <div class="setings-item yellow-skin">
+                    <span class="skin-name ">
+                        <a href="#" class="s-skin-3">
+                            黄色
+                        </a>
+                    </span>
+            </div>
+            <div class="setings-item ultra-skin">
+                    <span class="skin-name ">
+                        <a href="#" class="md-skin">
+                            绿色（没用）
+                        </a>
+                    </span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/static/js/plugins/toastr/toastr.min.js"></script>
+
+<script>
+    // Config box
+
+    // Enable/disable fixed top navbar
+    $('#fixednavbar').click(function () {
+        if ($('#fixednavbar').is(':checked')) {
+            $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
+            $("body").removeClass('boxed-layout');
+            $("body").addClass('fixed-nav');
+            $('#boxedlayout').prop('checked', false);
+
+            if (localStorageSupport) {
+                localStorage.setItem("boxedlayout", 'off');
+            }
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar", 'on');
+            }
+        } else {
+            $(".navbar-fixed-top").removeClass('navbar-fixed-top').addClass('navbar-static-top');
+            $("body").removeClass('fixed-nav');
+            $("body").removeClass('fixed-nav-basic');
+            $('#fixednavbar2').prop('checked', false);
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar", 'off');
+            }
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar2", 'off');
+            }
+        }
+    });
+
+    // Enable/disable fixed top navbar
+    $('#fixednavbar2').click(function () {
+        if ($('#fixednavbar2').is(':checked')) {
+            $(".navbar-static-top").removeClass('navbar-static-top').addClass('navbar-fixed-top');
+            $("body").removeClass('boxed-layout');
+            $("body").addClass('fixed-nav').addClass('fixed-nav-basic');
+            $('#boxedlayout').prop('checked', false);
+
+            if (localStorageSupport) {
+                localStorage.setItem("boxedlayout", 'off');
+            }
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar2", 'on');
+            }
+        } else {
+            $(".navbar-fixed-top").removeClass('navbar-fixed-top').addClass('navbar-static-top');
+            $("body").removeClass('fixed-nav').removeClass('fixed-nav-basic');
+            $('#fixednavbar').prop('checked', false);
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar2", 'off');
+            }
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar", 'off');
+            }
+        }
+    });
+
+    // Enable/disable fixed sidebar
+    $('#fixedsidebar').click(function () {
+        if ($('#fixedsidebar').is(':checked')) {
+            $("body").addClass('fixed-sidebar');
+            $('.sidebar-collapse').slimScroll({
+                height: '100%',
+                railOpacity: 0.9
+            });
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixedsidebar", 'on');
+            }
+        } else {
+            $('.sidebar-collapse').slimscroll({destroy: true});
+            $('.sidebar-collapse').attr('style', '');
+            $("body").removeClass('fixed-sidebar');
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixedsidebar", 'off');
+            }
+        }
+    });
+
+    // Enable/disable collapse menu
+    $('#collapsemenu').click(function () {
+        if ($('#collapsemenu').is(':checked')) {
+            $("body").addClass('mini-navbar');
+            SmoothlyMenu();
+
+            if (localStorageSupport) {
+                localStorage.setItem("collapse_menu", 'on');
+            }
+
+        } else {
+            $("body").removeClass('mini-navbar');
+            SmoothlyMenu();
+
+            if (localStorageSupport) {
+                localStorage.setItem("collapse_menu", 'off');
+            }
+        }
+    });
+
+    // Enable/disable boxed layout
+    $('#boxedlayout').click(function () {
+        if ($('#boxedlayout').is(':checked')) {
+            $("body").addClass('boxed-layout');
+            $('#fixednavbar').prop('checked', false);
+            $('#fixednavbar2').prop('checked', false);
+            $(".navbar-fixed-top").removeClass('navbar-fixed-top').addClass('navbar-static-top');
+            $("body").removeClass('fixed-nav');
+            $("body").removeClass('fixed-nav-basic');
+            $(".footer").removeClass('fixed');
+            $('#fixedfooter').prop('checked', false);
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar", 'off');
+            }
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixednavbar2", 'off');
+            }
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixedfooter", 'off');
+            }
+
+
+            if (localStorageSupport) {
+                localStorage.setItem("boxedlayout", 'on');
+            }
+        } else {
+            $("body").removeClass('boxed-layout');
+
+            if (localStorageSupport) {
+                localStorage.setItem("boxedlayout", 'off');
+            }
+        }
+    });
+
+    // Enable/disable fixed footer
+    $('#fixedfooter').click(function () {
+        if ($('#fixedfooter').is(':checked')) {
+            $('#boxedlayout').prop('checked', false);
+            $("body").removeClass('boxed-layout');
+            $(".footer").addClass('fixed');
+
+            if (localStorageSupport) {
+                localStorage.setItem("boxedlayout", 'off');
+            }
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixedfooter", 'on');
+            }
+        } else {
+            $(".footer").removeClass('fixed');
+
+            if (localStorageSupport) {
+                localStorage.setItem("fixedfooter", 'off');
+            }
+        }
+    });
+
+    // SKIN Select
+    $('.spin-icon').click(function () {
+        $(".theme-config-box").toggleClass("show");
+    });
+
+    // Default skin
+    $('.s-skin-0').click(function () {
+        $("body").removeClass("skin-1");
+        $("body").removeClass("skin-2");
+        $("body").removeClass("skin-3");
+    });
+
+    // Blue skin
+    $('.s-skin-1').click(function () {
+        $("body").removeClass("skin-2");
+        $("body").removeClass("skin-3");
+        $("body").addClass("skin-1");
+    });
+
+    // Inspinia ultra skin
+    $('.s-skin-2').click(function () {
+        $("body").removeClass("skin-1");
+        $("body").removeClass("skin-3");
+        $("body").addClass("skin-2");
+    });
+
+    // Yellow skin
+    $('.s-skin-3').click(function () {
+        $("body").removeClass("skin-1");
+        $("body").removeClass("skin-2");
+        $("body").addClass("skin-3");
+    });
+
+    if (localStorageSupport) {
+        var collapse = localStorage.getItem("collapse_menu");
+        var fixedsidebar = localStorage.getItem("fixedsidebar");
+        var fixednavbar = localStorage.getItem("fixednavbar");
+        var fixednavbar2 = localStorage.getItem("fixednavbar2");
+        var boxedlayout = localStorage.getItem("boxedlayout");
+        var fixedfooter = localStorage.getItem("fixedfooter");
+
+        if (collapse == 'on') {
+            $('#collapsemenu').prop('checked', 'checked')
+        }
+        if (fixedsidebar == 'on') {
+            $('#fixedsidebar').prop('checked', 'checked')
+        }
+        if (fixednavbar == 'on') {
+            $('#fixednavbar').prop('checked', 'checked')
+        }
+        if (fixednavbar2 == 'on') {
+            $('#fixednavbar2').prop('checked', 'checked')
+        }
+        if (boxedlayout == 'on') {
+            $('#boxedlayout').prop('checked', 'checked')
+        }
+        if (fixedfooter == 'on') {
+            $('#fixedfooter').prop('checked', 'checked')
+        }
+    }
+</script>
+<!--同步官网模板结束-->
+
+<script>
+
+</script>
+</body>
+</html>

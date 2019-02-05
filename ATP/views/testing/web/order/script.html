@@ -1,0 +1,81 @@
+<!-- Mainly scripts -->
+<script src="/static/js/jquery-3.1.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- FooTable -->
+<script src="/static/js/inspinia.js"></script>
+<script src="/static/js/plugins/pace/pace.min.js"></script>
+
+<!-- Nestable List -->
+<script src="/static/js/plugins/nestable/jquery.nestable.js"></script>
+
+<!-- Page-Level Scripts -->
+<script>
+    let list;
+    let updateOutput;
+    let output;
+    $(document).ready(function () {
+
+        updateOutput = function (e) {
+            list = e.length ? e : $(e.target);
+            output = list.data('output');
+            if (window.JSON) {
+                output.val(window.JSON.stringify(list.nestable('serialize')));//, null, 2));
+            } else {
+                output.val('JSON browser support required for this demo.');
+            }
+        };
+
+        // activate Nestable for list 2
+        $('#nestable2').nestable({
+            group: 1
+        }).on('change', function (e) {
+            updateOutput(e);
+            var $toast;
+            var xsrftoken = $('meta[name=_xsrf]').attr('content');
+
+            var datas = output.val()+'|case:{{.Case.Id}}';
+            $.ajax({
+                //几个参数需要注意一下
+                type: "POST",//方法类型
+                dataType: "json",//预期服务器返回的数据类型
+                url: "/testing/web/order",
+                //url
+                data: datas,
+                beforeSend: function (XMLHttpRequest) {
+                    XMLHttpRequest.setRequestHeader("X-Xsrftoken", xsrftoken);
+                },
+                success: function (result) {
+                    console.log(result);//打印服务端返回的数据(调试用)
+                    if (result["status"] === 1) {
+                        $toast = toastr["success"]("提交成功", result["message"]);
+                        window.location.reload();
+                    } else if (result["status"] === 0) {
+                        $toast = toastr["error"]("错误", result["message"]);
+                    }
+                },
+                error: function () {
+                    $toast = toastr["error"]("错误", "发送失败");
+                }
+            });
+        });
+
+        // output initial serialised data
+        updateOutput($('#nestable2').data('output', $('#nestable2-output')));
+
+        $('#nestable-menu').on('click', function (e) {
+            var target = $(e.target),
+                    action = target.data('action');
+            if (action === 'expand-all') {
+                $('.dd').nestable('expandAll');
+            }
+            if (action === 'collapse-all') {
+                $('.dd').nestable('collapseAll');
+            }
+        });
+
+    });
+
+</script>

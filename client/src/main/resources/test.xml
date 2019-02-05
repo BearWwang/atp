@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<suite name="test">
+    <test name="reportTest">
+        <classes>
+            <class name="com.snake.drivers.Report"/>
+        </classes>
+    </test>
+
+    <listeners>
+        <listener class-name="com.vimalselvam.testng.listener.ExtentTestNgFormatter"/>
+        <listener class-name="com.snake.drivers.util.ExtentTestNGIReporterListener"/>
+    </listeners>
+</suite>

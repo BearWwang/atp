@@ -1,0 +1,144 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>添加测试用例</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#">选项 1</a>
+                            </li>
+                            <li><a href="#">选项 2</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <h2>
+                        添加测试用例
+                    </h2>
+
+                    <form id="form" action="#" class="wizard-big">
+                        <h1>设置测试环境</h1>
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label class="font-normal">浏览器设置*</label>
+                                        <div>
+                                            <select data-placeholder="选择一个浏览器" name="config" class="form-control m-b"
+                                                    tabindex="2">
+                                                <option value="" selected>请选择</option>
+                                            {{range $item := .TestConfig}}
+                                                <option value="{{$item.Id}}">{{$item.BrowserName}}</option>
+                                            {{end}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div>
+                                        <div class="form-group" style="float: left;">
+                                            <label>
+                                                <input type="checkbox" name="BeforeClass" class="form-control">BeforeClass
+                                            </label>
+                                        </div>
+                                        <div class="form-group switch" style="float: left;">
+                                            <label>
+                                                <input class="form-control" name="AfterClass" type="checkbox">
+                                                AfterClass
+                                            </label>
+                                        </div>
+                                        <div class="form-group" style="float: left;">
+                                            <label>
+                                                <input class="form-control" name="BeforeTest" type="checkbox">BeforeTest
+                                            </label>
+                                        </div>
+                                        <div class="form-group" style="float: left;">
+                                            <label>
+                                                <input class="form-control" name="AfterTest" type="checkbox">AfterTest
+                                            </label>
+                                        </div>
+                                        <div class="form-group" style="float: left;">
+                                            <label>
+                                                <input class="form-control" name="DataProvider" type="checkbox">DataProvider
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>
+                                                <input class="form-control" name="Exception" type="checkbox">Exception
+                                            </label>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <h1>测试信息</h1>
+                        <fieldset>
+                            <h2>测试信息</h2>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>用例名称 *</label>
+                                        <input id="name" name="caseName" type="text" class="form-control required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>生成的测试函数名称 *</label>
+                                        <input id="surname" name="functionName" type="text"
+                                               class="form-control required">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>用例描述 *</label>
+                                        <input id="email" name="caseDescribe" type="text" class="form-control required">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>断言方式 *</label>
+                                        <div>
+                                            <select data-placeholder="选择一个浏览器" name="assertType"
+                                                    class="form-control m-b"
+                                                    tabindex="2">
+                                                <option value="" selected>请选择</option>
+                                                <option value="Equal">相等</option>
+                                                <option value="NotEqual">不相等</option>
+                                                <option value="True">真值</option>
+                                                <option value="False">假值</option>
+                                            </select>
+                                        </div>
+                                        <input id="address" name="assertType" type="text" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="font-normal">所属项目 *</label>
+                                        <div>
+                                            <select data-placeholder="选择一个浏览器" name="productId" class="form-control m-b"
+                                                    tabindex="2">
+                                                <option value="" selected>请选择</option>
+                                            {{range $item := .ProList}}
+                                                <option value="{{$item.Id}}">{{$item.ProjectName}}</option>
+                                            {{end}}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

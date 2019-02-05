@@ -1,0 +1,190 @@
+<div class="wrapper wrapper-content animated fadeInUp">
+
+    <div class="row">
+        <form id="product">
+
+            <div id="smartwizard" class="ibox float-e-margins">
+                <ul>
+                    <li><a href="#step-1">步骤一<br/>
+                        <small>填写项目基本信息</small>
+                    </a></li>
+                    <li><a href="#step-2">步骤二<br/>
+                        <small>设置管理员</small>
+                    </a></li>
+                    <li><a href="#step-3">步骤三<br/>
+                        <small>为项目设置图表</small>
+                    </a></li>
+                    <li><a href="#step-4">步骤四<br/>
+                        <small>检查你的信息</small>
+                    </a></li>
+                </ul>
+
+                <div>
+                    <div id="step-1" class="">
+
+                        <div class="col-md-12">
+                            <div class="hr-line-dashed"></div>
+
+                            <div class="col-md-6">
+                                <div class="input-group m-b">
+                                <span class="input-group-btn">
+                                            <button type="button"
+                                                    class="btn btn-primary">项目名称</button>
+                                </span>
+                                    <input type="text" name="productName"  class="form-control">
+                                </div>
+
+                                <div class="input-group m-b">
+                                <span class="input-group-btn">
+                                            <button type="button" class="btn btn-primary">项目负责人</button>
+                            </span>
+                                    <input type="text" name="maker"  class="form-control">
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-6">
+                                <div class="input-group m-b">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-primary">使用客户</button>
+                                </span>
+                                    <input type="text"  name="client"  class="form-control">
+                                </div>
+
+                                <div class="input-group m-b">
+                                <span class="input-group-btn">
+                                            <button type="button"  class="btn btn-primary">版本</button>
+                                </span>
+                                    <input type="text" name="version" class="form-control">
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="hr-line-dashed"></div>
+
+                                <p>
+                                    设置项目人员
+                                </p>
+
+                                <select class="form-control dual_select" name="Users" multiple>
+                                    <option value="United States">United States</option>
+                                    <option value="United Kingdom">United Kingdom</option>
+                                    <option value="Australia">Australia</option>
+                                    <option value="Austria">Austria</option>
+                                    <option value="Bahamas">Bahamas</option>
+                                    <option value="Barbados">Barbados</option>
+                                    <option value="Belgium">Belgium</option>
+                                    <option value="Bermuda">Bermuda</option>
+                                    <option value="Brazil">Brazil</option>
+                                    <option value="Bulgaria">Bulgaria</option>
+                                    <option value="Cameroon">Cameroon</option>
+                                    <option value="Canada">Canada</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="hr-line-dashed"></div>
+
+                                <div class="form-group"><label class="col-sm-2 control-label">项目优先级</label>
+
+                                    <div class="col-sm-10">
+                                        <select class="form-control m-b" name="level">
+                                            <option value="">低</option>
+                                            <option value="">中</option>
+                                            <option value="">高</option>
+                                            <option value="">加急</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="hr-line-dashed"></div>
+
+                    </div>
+                    <div id="step-2" class="">
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="font-normal">多选</label>
+                                <div>
+                                    <select data-placeholder="选择管理员" class="chosen-select" multiple
+                                            style="width:350px;" tabindex="4" name="admin">
+                                        <option value="">Select</option>
+                                        <option value="United States">United States</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="Afghanistan">Afghanistan</option>
+                                        <option value="Aland Islands">Aland Islands</option>
+                                        <option value="Albania">Albania</option>
+                                        <option value="Algeria">Algeria</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div id="step-3" class="">
+                        <div class="hr-line-dashed"></div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="image-crop">
+                                    <img src="/static/img/p3.jpg">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>预览图像</h4>
+                                <div class="img-preview img-preview-sm"></div>
+                                <h4>常用方法</h4>
+                                <p>
+                                    您可以将新图像上传到裁剪容器，并轻松下载新的裁剪图像。
+                                </p>
+                                <div class="btn-group">
+                                    <label title="Upload image file" for="inputImage" class="btn btn-primary">
+                                        <input type="file" accept="image/*" name="file" id="inputImage" class="hide">
+                                        上传新图片
+                                    </label>
+                                    <label title="Donload image" id="download" class="btn btn-primary">下载</label>
+                                </div>
+                                <h4>操作</h4>
+                                <div class="btn-group">
+                                    <button class="btn btn-white" id="zoomIn" type="button">放大</button>
+                                    <button class="btn btn-white" id="zoomOut" type="button">缩小</button>
+                                    <button class="btn btn-white" id="rotateLeft" type="button">向左旋转</button>
+                                    <button class="btn btn-white" id="rotateRight" type="button">向右旋转</button>
+                                    <button class="btn btn-warning" id="setDrag" type="button">新滤镜</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="step-4" class="">
+                        <h2>Step 4 Content, Non ajax content</h2>
+                        <div class="card">
+                            <div class="card-header">My Details</div>
+                            <div class="card-block p-0">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <th>Name:</th>
+                                        <td>Tim Smith</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email:</th>
+                                        <td>example@example.com</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+</div>

@@ -1,0 +1,117 @@
+<!-- Mainly scripts -->
+<script src="/static/js/jquery-3.1.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="/static/js/inspinia.js"></script>
+<script src="/static/js/plugins/pace/pace.min.js"></script>
+
+<script src="/static/js/jquery.smartWizard.min.js"></script>
+
+<script src="/static/js/plugins/dualListbox/jquery.bootstrap-duallistbox.js"></script>
+
+<script src="/static/js/plugins/chosen/chosen.jquery.js"></script>
+
+<script src="/static/js/plugins/cropper/cropper.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        // Toolbar extra buttons
+        var btnFinish = $('<button></button>').text('完成')
+                .addClass('btn btn-info')
+                .on('click',function () {
+                    var $toast;
+                    var xsrftoken = $('meta[name=_xsrf]').attr('content');
+
+                    $.ajax({
+                        //几个参数需要注意一下
+                        type: "POST",//方法类型
+                        dataType: "json",//预期服务器返回的数据类型
+                        url: "{{urlfor "ProductController.AddProject"}}",
+                        data: $('#product').serialize(),
+                        beforeSend: function (XMLHttpRequest) {
+                            XMLHttpRequest.setRequestHeader("X-Xsrftoken", xsrftoken);
+                        },
+                        success: function (result) {
+                            if (result["status"] === 1) {
+                                toastr.success("提交成功", "成功");
+                            } else if (result["status"] === 2) {
+                                $toast = toastr["error"]("错误", result["message"]);
+                            }
+                        },
+                        error: function () {
+                            $toast = toastr["error"]("错误", "发送失败");
+                        }
+                    });
+
+                    // window.location.reload();
+
+                });
+        var btnCancel = $('<button></button>').text('取消')
+                .addClass('btn btn-danger')
+                .on('click', function () {
+                    $('#smartwizard').smartWizard("reset");
+                });
+        // Smart Wizard
+        $('#smartwizard').smartWizard({
+            selected: 0,
+            theme: 'arrows',
+            transitionEffect: 'fade',
+            toolbarSettings: {
+                toolbarPosition: 'bottom',
+                toolbarExtraButtons: [btnFinish, btnCancel],
+                toolbarButtonPosition:'start'
+            },
+            lang:{
+                next:'下一步',
+                previous:'上一步'
+            },
+
+        });
+        $('.dual_select').bootstrapDualListbox({
+            selectorMinimalHeight: 160
+        });
+        $('.chosen-select').chosen({width: "100%"});
+
+        var $image = $(".image-crop > img");
+        $($image).cropper({
+            aspectRatio: 1.618,
+            preview: ".img-preview",
+            done: function (data) {
+                // Output the result data for cropping image.
+
+            }
+        });
+
+        var $inputImage = $("#inputImage");
+        if (window.FileReader) {
+            $inputImage.change(function () {
+                var fileReader = new FileReader(),
+                        files = this.files,
+                        file;
+
+                if (!files.length) {
+                    return;
+                }
+
+                file = files[0];
+
+                if (/^image\/\w+$/.test(file.type)) {
+                    fileReader.readAsDataURL(file);
+                    fileReader.onload = function () {
+                        $inputImage.val("");
+                        $image.cropper("reset", true).cropper("replace", this.result);
+                    };
+                } else {
+                    showMessage("请选择一个图像文件。");
+                }
+            });
+        } else {
+            $inputImage.addClass("hide");
+        }
+    });
+</script>
+

@@ -1,0 +1,69 @@
+{
+  "Id": 0,
+  "BrowserConfig": {
+    "Id": 1,
+    "BrowserName": "firefox",
+    "BrowserVersion": "v0.23",
+    "index": "http://www.baidu.com"
+  },
+  "TestConfig": {
+    "Id": 1,
+    "BeforeClass": true,
+    "AfterClass": true,
+    "BeforeTest": true,
+    "AfterTest": true,
+    "DataProvider": false,
+    "ExceptionTest": false
+  },
+  "Cases": [
+    {
+      "Id": 1,
+      "CaseName": "cc",
+      "functionName": "test1",
+      "functionArgType": "",
+      "assertType": "equal",
+      "action": [
+        {
+          "Id": 3,
+          "ElementId": 3,
+          "elementName": "登录",
+          "elementMethod": "click",
+          "SendValue": "admin",
+          "selectMethod": "",
+          "selectBy": "",
+          "index": "",
+          "Order": 1,
+          "CaseId": 1
+        },
+        {
+          "Id": 2,
+          "ElementId": 2,
+          "elementName": "注册",
+          "elementMethod": "click",
+          "SendValue": "//input[@id='con']",
+          "selectMethod": "",
+          "selectBy": "",
+          "index": "",
+          "Order": 2,
+          "CaseId": 1
+        }
+      ]
+    }
+  ],
+  "Elements": [
+    {
+      "id": 0,
+      "elementName": "登录",
+      "type": "",
+      "method": "id",
+      "value": "admin"
+    },
+    {
+      "id": 0,
+      "elementName": "注册",
+      "type": "",
+      "method": "xpath",
+      "value": "//input[@id='con']"
+    }
+  ]
+}

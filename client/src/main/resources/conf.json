@@ -1,0 +1,127 @@
+{
+  "BrowserConfig": {
+    "BrowserName": "Firefox",
+    "BrowserVersion": "v68-70",
+    "index": "http://www.baidu.com"
+  },
+  "TestConfig": {
+    "BeforeClass": true,
+    "AfterClass": true,
+    "BeforeTest": true,
+    "AfterTest": true,
+    "DataProvider": true,
+    "ExceptionTest": false
+  },
+  "Cases": [
+    {
+      "functionName": "TestLogin",
+      "functionArgs": [],
+      "functionArgType": [],
+      "assertType": "equal",
+      "assert": {
+      },
+      "action": [
+        {
+          "elementName": "主页登录按钮",
+          "elementMethod": "click"
+        },
+        {
+          "elementName": "登录按钮",
+          "elementMethod": "click"
+        },
+        {
+          "elementName": "用户名输入框",
+          "elementMethod": "click"
+        },{
+          "elementName": "用户名输入框",
+          "elementMethod": "wait",
+          "sendValue":"1"
+        },{
+          "elementName": "用户名输入框",
+          "elementMethod": "select",
+          "selectMethod":"selected",
+          "selectBy":"index",
+          "index":"1"
+        },{
+          "elementName": "用户名输入框",
+          "elementMethod": "select",
+          "selectMethod":"unselected",
+          "selectBy":"name",
+          "index":"姓名"
+        }
+      ]
+    }
+  ],
+  "Elements": [
+    {
+      "name": "主页登录按钮",
+      "method": "xpath",
+      "value": "//a[@class='navbar-brand']"
+    },
+    {
+      "name": "用户名输入框",
+      "method": "xpath",
+      "value": "//input[@name='username']"
+    },
+    {
+      "name": "密码输入框",
+      "method": "xpath",
+      "value": "//input[@name='password']"
+    },
+    {
+      "name": "登录按钮",
+      "method": "xpath",
+      "value": "//button[@onclick='Submit()']"
+    },
+    {
+      "name": "网页标题",
+      "method": "xpath",
+      "value": "//span[@class='m-r-sm text-muted welcome-message']"
+    },
+    {
+      "name": "开始测试按钮",
+      "method": "partialLinkText",
+      "value": "开始测试"
+    },
+    {
+      "name": "接口测试按钮",
+      "method": "xpath",
+      "value": "//a[contains(text(),'接口测试')]"
+    },
+    {
+      "name": "添加测试用例按钮",
+      "method": "xpath",
+      "value": "//button[contains(text(),'添加测试用例')]"
+    },
+    {
+      "name": "名称输入框",
+      "method": "name",
+      "value": "names"
+    },
+    {
+      "name": "URL输入框",
+      "method": "name",
+      "value": "addr"
+    },
+    {
+      "name": "请求方式输入框",
+      "method": "name",
+      "value": "method"
+    },
+    {
+      "name": "请求值输入框",
+      "method": "name",
+      "value": "value"
+    },
+    {
+      "name": "保存按钮",
+      "method": "id",
+      "value": "submit"
+    },
+    {
+      "name": "第一条测试用例",
+      "method": "xpath",
+      "value": "//tr[@class='gradeX footable-even']/td[@class='footable-visible']"
+    }
+  ]
+}

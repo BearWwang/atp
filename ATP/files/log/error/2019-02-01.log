@@ -1,0 +1,111 @@
+函数名：WebTestingConfig.Run, cause: parse 192.168.1.149:8090/api: first path segment in URL cannot contain colon
+ at Test/libs.NewErrorMsg()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/Listener.go:29
+ at Test/libs.(*Listenable).NotifyError()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/Listener.go:57
+ at Test/libs.(*WebTesting).Run()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/test.go:168
+ at Test/controllers.(*WebTestingController).RunTest()
+	/Users/venmosnake/Documents/GolangProject/src/Test/controllers/webtesting.go:476
+ at runtime.call32()
+	/usr/local/go/src/runtime/asm_amd64.s:522
+ at reflect.Value.call()
+	/usr/local/go/src/reflect/value.go:447
+ at reflect.Value.Call()
+	/usr/local/go/src/reflect/value.go:308
+ at github.com/astaxie/beego.(*ControllerRegister).ServeHTTP()
+	/Users/venmosnake/Documents/GolangProject/src/github.com/astaxie/beego/router.go:851
+ at net/http.serverHandler.ServeHTTP()
+	/usr/local/go/src/net/http/server.go:2741
+ at net/http.(*conn).serve()
+	/usr/local/go/src/net/http/server.go:1847
+ at runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:1333函数名：WebTestingConfig.Run, cause: Post http://192.168.1.149:8090/api: dial tcp 192.168.1.149:8090: i/o timeout
+ at Test/libs.NewErrorMsg()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/Listener.go:29
+ at Test/libs.(*Listenable).NotifyError()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/Listener.go:57
+ at Test/libs.(*WebTesting).Run()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/test.go:168
+ at Test/controllers.(*WebTestingController).RunTest()
+	/Users/venmosnake/Documents/GolangProject/src/Test/controllers/webtesting.go:476
+ at runtime.call32()
+	/usr/local/go/src/runtime/asm_amd64.s:522
+ at reflect.Value.call()
+	/usr/local/go/src/reflect/value.go:447
+ at reflect.Value.Call()
+	/usr/local/go/src/reflect/value.go:308
+ at github.com/astaxie/beego.(*ControllerRegister).ServeHTTP()
+	/Users/venmosnake/Documents/GolangProject/src/github.com/astaxie/beego/router.go:851
+ at net/http.serverHandler.ServeHTTP()
+	/usr/local/go/src/net/http/server.go:2741
+ at net/http.(*conn).serve()
+	/usr/local/go/src/net/http/server.go:1847
+ at runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:1333函数名：WebTestingConfig.Run, cause: Post http://192.168.1.149:8090/api: dial tcp 192.168.1.149:8090: i/o timeout
+ at Test/libs.NewErrorMsg()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/Listener.go:29
+ at Test/libs.(*Listenable).NotifyError()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/Listener.go:57
+ at Test/libs.(*WebTesting).Run()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/test.go:168
+ at Test/controllers.(*WebTestingController).RunTest()
+	/Users/venmosnake/Documents/GolangProject/src/Test/controllers/webtesting.go:476
+ at runtime.call32()
+	/usr/local/go/src/runtime/asm_amd64.s:522
+ at reflect.Value.call()
+	/usr/local/go/src/reflect/value.go:447
+ at reflect.Value.Call()
+	/usr/local/go/src/reflect/value.go:308
+ at github.com/astaxie/beego.(*ControllerRegister).ServeHTTP()
+	/Users/venmosnake/Documents/GolangProject/src/github.com/astaxie/beego/router.go:851
+ at net/http.serverHandler.ServeHTTP()
+	/usr/local/go/src/net/http/server.go:2741
+ at net/http.(*conn).serve()
+	/usr/local/go/src/net/http/server.go:1847
+ at runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:1333函数名：WebTestingConfig.Run, cause: Post http://192.168.1.153:8090/api: dial tcp 192.168.1.153:8090: connect: network is unreachable
+ at Test/libs.NewErrorMsg()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/Listener.go:29
+ at Test/libs.(*Listenable).NotifyError()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/Listener.go:57
+ at Test/libs.(*WebTesting).Run()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/test.go:170
+ at Test/controllers.(*WebTestingController).RunTest()
+	/Users/venmosnake/Documents/GolangProject/src/Test/controllers/webtesting.go:476
+ at runtime.call32()
+	/usr/local/go/src/runtime/asm_amd64.s:522
+ at reflect.Value.call()
+	/usr/local/go/src/reflect/value.go:447
+ at reflect.Value.Call()
+	/usr/local/go/src/reflect/value.go:308
+ at github.com/astaxie/beego.(*ControllerRegister).ServeHTTP()
+	/Users/venmosnake/Documents/GolangProject/src/github.com/astaxie/beego/router.go:851
+ at net/http.serverHandler.ServeHTTP()
+	/usr/local/go/src/net/http/server.go:2741
+ at net/http.(*conn).serve()
+	/usr/local/go/src/net/http/server.go:1847
+ at runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:1333函数名：WebTestingConfig.Run, cause: Post http://192.168.1.153:8090/api: dial tcp 192.168.1.153:8090: connect: network is unreachable
+ at Test/libs.NewErrorMsg()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/Listener.go:29
+ at Test/libs.(*Listenable).NotifyError()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/Listener.go:57
+ at Test/libs.(*WebTesting).Run()
+	/Users/venmosnake/Documents/GolangProject/src/Test/libs/test.go:170
+ at Test/controllers.(*WebTestingController).RunTest()
+	/Users/venmosnake/Documents/GolangProject/src/Test/controllers/webtesting.go:476
+ at runtime.call32()
+	/usr/local/go/src/runtime/asm_amd64.s:522
+ at reflect.Value.call()
+	/usr/local/go/src/reflect/value.go:447
+ at reflect.Value.Call()
+	/usr/local/go/src/reflect/value.go:308
+ at github.com/astaxie/beego.(*ControllerRegister).ServeHTTP()
+	/Users/venmosnake/Documents/GolangProject/src/github.com/astaxie/beego/router.go:851
+ at net/http.serverHandler.ServeHTTP()
+	/usr/local/go/src/net/http/server.go:2741
+ at net/http.(*conn).serve()
+	/usr/local/go/src/net/http/server.go:1847
+ at runtime.goexit()
+	/usr/local/go/src/runtime/asm_amd64.s:1333

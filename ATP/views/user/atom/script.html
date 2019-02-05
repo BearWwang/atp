@@ -1,0 +1,119 @@
+<!-- Mainly scripts -->
+<script src="/static/js/jquery-3.1.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- Custom and plugin javascript -->
+<script src="/static/js/inspinia.js"></script>
+<!-- iCheck -->
+<script src="/static/js/plugins/iCheck/icheck.min.js"></script>
+<script src="/static/js/plugins/pwstrength/zxcvbn.js"></script>
+<script src="/static/js/plugins/pwstrength/pwstrength-bootstrap.min.js"></script>
+<script src="/static/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="/static/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="/static/js/ch.js"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+
+        $("#addUser").validate({
+            rules: {
+                username: {
+                    required: true,
+                },
+                realname: {
+                    required: true,
+                },
+                phone: {
+                    required: true,
+                    minlength: 11,
+                    maxlength: 11,
+                    digits: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                checkpass: {
+                    equalTo: "#agpassword"
+                }
+            }
+        });
+        var options4 = {};
+        options4.ui = {
+            container: "#pwd-password",
+            viewports: {
+                progress: ".pwstrength_viewport_progress4",
+                verdict: ".pwstrength_viewport_verdict4"
+            }
+        };
+        options4.common = {
+            zxcvbn: true,
+            zxcvbnTerms: ['samurai', 'shogun', 'bushido', 'daisho', 'seppuku'],
+            userInputs: ['#year', '#familyname']
+        };
+        $('#password').pwstrength(options4);
+    })
+</script>
+
+<script>
+    function Submit() {
+        var xsrftoken = $('meta[name=_xsrf]').attr('content');
+        $.ajax({
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/user/register",
+            //url
+            data: $('#addUser').serialize(),
+            beforeSend: function (XMLHttpRequest) {
+                XMLHttpRequest.setRequestHeader("X-Xsrftoken", xsrftoken);
+            },
+            success: function (result) {
+                if (result["status"] === 1) {
+                    swal({
+                                title: "成功！",
+                                text: result["message"],
+                                type: "success",
+                                confirmButtonText: "确认",
+                                closeOnConfirm: false,
+                                closeOnCancel: false
+                            },
+                            function (isConfirm) {
+                                if (isConfirm) {
+                                    window.location.href = "/home";
+                                }
+                            }
+                    );
+                    setTimeout(function () {
+                        window.location.href = "/user/login";
+                    }, 2000);
+
+                } else if (result["status"] === 0) {
+                    swal({
+                        title: "失败！",
+                        text: result["message"],
+                    });
+                } else if (result["status"] === 101) {
+                    swal({
+                        title: "失败！",
+                        text: result["message"]
+                    });
+                }
+            },
+            error: function () {
+                swal({
+                    title: "失败！",
+                    text: "服务器连接错误"
+                });
+            }
+        });
+
+    }
+</script>
