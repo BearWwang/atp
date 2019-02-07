@@ -13,8 +13,8 @@ public class BrowserConfig {
      * 根据BrowserConfig字段解析浏览器配置
      * @param data 传入的json对象，json对象由通过服务器传入，由handler传入交给start.ava进行解析
      */
-    public BrowserConfig(JsonObject data) {
-        BrowserName = data.get("BrowserName").getAsString();    ·+
+    BrowserConfig(JsonObject data) {
+        BrowserName = data.get("BrowserName").getAsString();
         BrowserVersion = data.get("BrowserVersion").getAsString();
         url = data.get("index").getAsString();
     }

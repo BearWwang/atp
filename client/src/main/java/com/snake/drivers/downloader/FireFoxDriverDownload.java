@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 
-public class FireFoxDriverDownload {
+public class FireFoxDriverDownload implements DriverDownloader {
 
     private Logger logger = Logger.getLogger(FireFoxDriverDownload.class);
     private static final String url = "https://github.com/mozilla/geckodriver/releases";
@@ -20,11 +20,11 @@ public class FireFoxDriverDownload {
     private static final String WINDOWS = "windows";
     private static String BASE_DIR;
 
-    private String broswerVersion;
+    private String browserVersion;
 
-    public FireFoxDriverDownload(String broswerVersion) {
-        logger.info("正在查找版本为"+broswerVersion+"的浏览器驱动");
-        this.broswerVersion = broswerVersion;
+    public FireFoxDriverDownload(String browserVersion) {
+        logger.info("正在查找版本为" + browserVersion + "的浏览器驱动");
+        this.browserVersion = browserVersion;
     }
 
     public void startDownload(String version) {
@@ -58,7 +58,7 @@ public class FireFoxDriverDownload {
             if (url != null) {
                 Object[][] data = CsvUtil.readCSV(url.getPath());
                 for (Object[] aData : data) {
-                    if (((String) aData[1]).contains(broswerVersion)) {
+                    if (((String) aData[1]).contains(browserVersion)) {
                         return (String) aData[0];
                     }
                 }
@@ -66,7 +66,7 @@ public class FireFoxDriverDownload {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        throw new RuntimeException("暂不支持的版本：" + broswerVersion);
+        throw new RuntimeException("暂不支持的版本：" + browserVersion);
     }
 
     public String getPlatform() {
